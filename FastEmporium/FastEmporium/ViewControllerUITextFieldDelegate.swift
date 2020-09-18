@@ -13,14 +13,23 @@ extension ViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == textFieldProduct {
             if let product = textFieldProduct.text, textFieldProduct.text != "" {
-                enableDisableAllButtons()
+                enableDisableASaveClearButton()
                 textFieldQuantity.becomeFirstResponder()
+                
+                if products.ifProductExists(productName: product) {
+                    let product = products.getProduct(productName: product)
+                    
+                    setTextFieldQuantity(quantity: String(product!.quantity))
+                    unhideButtonDelete()
+                    setTitleSaveButtonToUpdate()
+                }
             }
         }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textFieldDidEndEditing(textField)
+        enableDisableASaveClearButton()
+        self.textFieldDidEndEditing(textField)
         return true
     }
     

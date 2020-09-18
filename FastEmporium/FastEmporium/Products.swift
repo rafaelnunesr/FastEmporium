@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 
 class Products: ProductsProtocol {
-    private var arrayProducts = [Product]()
+    var arrayProducts = [Product]()
     
     func ifProductExists(productName: String) -> Bool {
         for product in arrayProducts {
-            if product.name == productName {
+            if product.name.lowercased() == productName.lowercased() {
                 return true
             }
         }
@@ -47,17 +47,19 @@ class Products: ProductsProtocol {
         }
     }
     
-    func removeProduct(productName: String) {
+    func removeProduct(productName: String) -> Bool {
         var x = 0
         
         while x < arrayProducts.count {
             if arrayProducts[x].name == productName {
                 arrayProducts.remove(at: x)
-                break
+                return true
             }
             
             x += 1
         }
+        
+        return false
 
     }
     
@@ -70,6 +72,6 @@ protocol ProductsProtocol {
     func getProduct(productName: String) -> Product?
     func addNewProduct(productName: String, quantity: Int)
     func updateProductQuantity(productName: String, newQuantity quantity: Int)
-    func removeProduct(productName: String)
+    func removeProduct(productName: String) -> Bool
     
 }

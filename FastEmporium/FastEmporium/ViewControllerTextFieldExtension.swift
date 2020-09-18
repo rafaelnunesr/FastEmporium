@@ -18,7 +18,7 @@ extension ViewController {
         return false
     }
     
-    func getTextFieldData() -> String {
+    func getTextFieldProductName() -> String {
         return textFieldProduct.text!
     }
     
@@ -31,5 +31,16 @@ extension ViewController {
     
     func getTextFieldQuantity() -> String {
         return textFieldQuantity.text!
+    }
+    
+    func setTextFieldQuantity(quantity: String) {
+        textFieldQuantity.text = quantity
+    }
+    
+    func setListLabel() {
+        
+        for product in products.arrayProducts {
+            labelList.text = "\(labelList.text!)\(product.quantity) X \(product.name)\n"
+        }
     }
 }

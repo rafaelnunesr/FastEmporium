@@ -11,39 +11,44 @@ import UIKit
 
 extension ViewController {
     
-    func hiddeButtonDelete() {
+    func hideButtonDelete() {
         buttonDelete.isHidden = true
     }
     
-    func unhiddeButtonDelete() {
-        buttonDelete.isHidden = true
+    func unhideButtonDelete() {
+        buttonDelete.isHidden = false
     }
     
-    func enableDisableAllButtons() {
-        
-        let ifButtonsAreEnable = buttonSave.isEnabled
+    func setTitleSaveButtonToUpdate() {
+        buttonSave.setTitle("Update", for: .normal)
+    }
+    
+    func setTitleSaveButtonToSave() {
+        buttonSave.setTitle("Save", for: .normal)
+    }
+    
+    func enableDisableASaveClearButton() {
         
         buttonSave.isEnabled = !buttonSave.isEnabled
         buttonClear.isEnabled = !buttonClear.isEnabled
-        buttonDelete.isEnabled = !buttonDelete.isEnabled
+        
+        let ifButtonsAreEnable = buttonSave.isEnabled
         
         if ifButtonsAreEnable {
-            downButtonOpacity()
-        }else {
             upButtonOpacity()
+        }else {
+            downButtonOpacity()
         }
     }
     
     func downButtonOpacity() {
         buttonSave.alpha = 0.2
         buttonClear.alpha = 0.2
-        buttonDelete.alpha = 0.2
     }
     
     func upButtonOpacity() {
         buttonSave.alpha = 1.0
         buttonClear.alpha = 1.0
-        buttonDelete.alpha = 1.0
     }
     
 }
